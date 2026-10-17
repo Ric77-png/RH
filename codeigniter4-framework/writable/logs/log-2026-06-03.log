@@ -1,0 +1,9 @@
+CRITICAL - 2026-06-03 08:05:00 --> Error: Call to undefined function App\Controllers\newUsers()
+[Method: POST, Route: csv]
+in APPPATH\Controllers\ImportController.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\ImportController->csv()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ImportController))
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
