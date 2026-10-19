@@ -23,4 +23,17 @@ class RhController extends ResourceController
             'data' => $besoins,
         ]);
     }
+
+    public function getDetails($reference)
+    {
+        $besoin = $this->besoinModel->getBesoinsDetails($reference);
+
+        if (!$besoin) {
+            return $this->failNotFound('Besoin not found');
+        }
+
+        return $this->respond([
+            'data' => $besoin,
+        ]);
+    }
 }

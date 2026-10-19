@@ -28,7 +28,21 @@ class BesoinModel extends Model
     ];
 
     
-    public function getBesoins($statut)
+    public function getBesoins($status){
+        return $this->select('
+            besoins.reference,
+            departements.nom AS departements,
+            besoins.intitule_poste,
+            besoins.nb_postes,
+            besoins.statut,
+            besoins.urgence
+        ')
+            ->join('departements', 'departements.id = besoins.departement_id', 'left')
+            ->where('besoins.statut', $status)
+            ->findAll();
+    }
+
+    public function getBesoinsDetails($reference)
     {
         return $this->select('
                 besoins.reference,
@@ -44,11 +58,12 @@ class BesoinModel extends Model
                 besoins.missions,
                 besoins.competences,
                 besoins.urgence,
-                besoins.statut
+                besoins.statut,
+                besoins.created_at
             ')
             ->join('departements', 'departements.id = besoins.departement_id', 'left')
             ->join('utilisateurs', 'utilisateurs.id = besoins.manager_id', 'left')
-            ->where('besoins.statut', $statut)
+            ->where('besoins.reference', $reference)
             ->findAll();
     }
 }

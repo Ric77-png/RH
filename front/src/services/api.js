@@ -36,3 +36,7 @@ export async function apiFetch(path, options = {}) {
 export function getNeeds() {
   return apiFetch('/api/rh/needs')
 }
+
+export function getNeedDetails(reference) {
+  return apiFetch(`/api/rh/needs/${encodeURIComponent(reference)}`)
+}

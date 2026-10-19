@@ -58,7 +58,8 @@ INSERT INTO besoins (
   missions,
   competences,
   urgence,
-  statut
+  statut,
+  created_at
 )
 VALUES (
   'BES-2026-001',
@@ -74,7 +75,8 @@ VALUES (
   'Développer et maintenir les applications web de l’entreprise.',
   'PHP, CodeIgniter 4, Vue.js, SQL',
   'normal',
-  'envoye_rh'
+  'envoye_rh',
+  '2026-11-01 10:00:00'
 );
 
 COMMIT;

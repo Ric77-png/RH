@@ -10,9 +10,21 @@ defineProps({
 </script>
 
 <template>
-  <section v-if="needs.length" class="needs-list" aria-label="Liste des besoins">
-    <NeedCard v-for="(need, index) in needs" :key="need.id ?? index" :need="need" />
-  </section>
-
-  <p v-else class="empty-state">Aucun besoin à afficher.</p>
+  <table class="needs-table">
+    <thead>
+      <tr>
+        <th>Réf.</th>
+        <th>Département</th>
+        <th>Poste</th>
+        <th>Nb</th>
+        <th>Salaire proposé</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <NeedCard v-for="need in needs" :key="need.id" :need="need" />
+    </tbody>
+  </table>
 </template>
+
+
