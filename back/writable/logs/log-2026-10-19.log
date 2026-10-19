@@ -1,0 +1,45 @@
+CRITICAL - 2026-10-19 12:47:53 --> CodeIgniter\Filters\Exceptions\FilterException: "role" filter must have a matching alias defined.
+[Method: CLI, Route: routes]
+in SYSTEMPATH/Filters/Filters.php on line 590.
+ 1 SYSTEMPATH/Filters/Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias()
+ 2 SYSTEMPATH/Filters/Filters.php(641): CodeIgniter\Filters\Filters->enableFilter()
+ 3 SYSTEMPATH/Commands/Utilities/Routes/FilterFinder.php(58): CodeIgniter\Filters\Filters->enableFilters()
+ 4 SYSTEMPATH/Commands/Utilities/Routes/FilterCollector.php(78): CodeIgniter\Commands\Utilities\Routes\FilterFinder->find()
+ 5 SYSTEMPATH/Commands/Utilities/Routes.php(110): CodeIgniter\Commands\Utilities\Routes\FilterCollector->get()
+ 6 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Utilities\Routes->run()
+ 7 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+ 8 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+ 9 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+10 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+CRITICAL - 2026-10-19 12:50:39 --> CodeIgniter\Filters\Exceptions\FilterException: "role" filter must have a matching alias defined.
+[Method: GET, Route: rh/needs]
+in SYSTEMPATH/Filters/Filters.php on line 590.
+ 1 SYSTEMPATH/Filters/Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias()
+ 2 SYSTEMPATH/Filters/Filters.php(641): CodeIgniter\Filters\Filters->enableFilter()
+ 3 SYSTEMPATH/CodeIgniter.php(453): CodeIgniter\Filters\Filters->enableFilters()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/toky/S5/gestion/RH/back/public/index.php')
+CRITICAL - 2026-10-19 12:51:09 --> ErrorException: Undefined variable $r
+[Method: GET, Route: rh/needs]
+in APPPATH/Config/Routes.php on line 18.
+ 1 APPPATH/Config/Routes.php(18): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/Router/RouteCollection.php(339): require('/home/toky/S5/gestion/RH/back/app/Config/Routes.php')
+ 3 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 5 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/home/toky/S5/gestion/RH/back/public/index.php')
+CRITICAL - 2026-10-19 12:52:14 --> ErrorException: Undefined variable $r
+[Method: CLI, Route: routes]
+in APPPATH/Config/Routes.php on line 18.
+ 1 APPPATH/Config/Routes.php(18): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/Router/RouteCollection.php(339): require('/home/toky/S5/gestion/RH/back/app/Config/Routes.php')
+ 3 SYSTEMPATH/CLI/Console.php(41): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+ 5 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+ 6 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()

@@ -8,10 +8,10 @@ $routes->post('jobs/(:num)/apply', 'Jobs::apply/$1');
 $routes->get('login', 'Auth::login');
 $routes->post('login', 'Auth::attempt');
 $routes->get('logout', 'Auth::logout');
-$routes->get('dashboard', 'Dashboard::index', ['filter' => 'role']);
+$routes->get('dashboard', 'Dashboard::index');
 
-$routes->group('manager', ['filter' => 'role:manager', 'namespace' => 'App\Controllers\Manager'], static function ($r) {
-    $r->get('needs', 'Needs::index');
-    $r->get('needs/new', 'Needs::new');
-    $r->post('needs', 'Needs::create');
+$routes->group('api', static function ($r) {
+    $r->get('rh/needs', 'Rh\RhController::index');
 });
+
+// Routes RH à activer après la création du filtre d'authentification.
