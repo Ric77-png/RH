@@ -1,10 +1,19 @@
 CREATE DATABASE IF NOT EXISTS entreprise
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE entreprise_rh;
+USE entreprise;
 
 -- ------------------------------------------------------------
 -- 1. Départements et utilisateurs
 -- ------------------------------------------------------------
+
+CREATE TABLE departements (
+  id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  nom         VARCHAR(100) NOT NULL UNIQUE,
+  manager_id  INT UNSIGNED NULL,
+  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+) ENGINE=InnoDB;
 
 CREATE TABLE utilisateurs (
   id             INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -23,14 +32,8 @@ CREATE TABLE utilisateurs (
   CONSTRAINT fk_user_dept FOREIGN KEY (departement_id) REFERENCES departements(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE departements (
-  id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  nom         VARCHAR(100) NOT NULL UNIQUE,
-  manager_id  INT UNSIGNED NULL,
-  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  CONSTRAINT fk_dept_manager FOREIGN KEY (manager_id) REFERENCES utilisateurs(id)
-) ENGINE=InnoDB;
+ALTER TABLE departements
+ADD CONSTRAINT fk_dept_manager FOREIGN KEY (manager_id) REFERENCES utilisateurs(id);
 
 
 -- ------------------------------------------------------------
@@ -76,7 +79,7 @@ CREATE TABLE besoin_validations (
 -- 3. BUDGET : exercices + mouvements (grand livre simplifié)
 -- ------------------------------------------------------------
 -- Un exercice = une année budgétaire.
---Ty table exercice ty ilaina mba ahafahana manasaraka ny budget sy ny mouvements amin'ny taona tsirairay.
+-- Table exercice : permet de séparer le budget et les mouvements par année.
 CREATE TABLE exercices (
   id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   annee   YEAR NOT NULL UNIQUE,
@@ -88,6 +91,7 @@ CREATE TABLE exercices (
 -- Chaque ligne = une entrée ou une sortie d'argent.
 -- departement_id NULL = caisse centrale de l'entreprise.
 -- Le solde n'est jamais stocké : il se calcule (entrées - sorties).
+
 CREATE TABLE budget_mouvements (
   id             BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   exercice_id    INT UNSIGNED NOT NULL,
