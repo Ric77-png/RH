@@ -8,12 +8,11 @@ class BesoinModel extends Model
 {
     protected $table = 'besoins';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['nom','reference','departement_id','manager_id','intitule_poste','nb_postes','type_contrat','motif','niveau_experience','salaire_propose','date_prise_poste','missions','competences','urgence','statut','created_at','updated_at'];
+    protected $allowedFields = ['reference','departements_id','manager_id','intitule_poste','nb_postes','type_contrat','motif','niveau_experience','salaire_propose','date_prise_poste','missions','competences','urgence','statut','created_at','updated_at'];
 
     protected $validationRules = [
-        'nom' => 'required',
         'reference' => 'required',
-        'departement_id' => 'required|integer',
+        'departements_id' => 'required|integer',
         'manager_id' => 'required|integer',
         'intitule_poste' => 'required',
         'nb_postes' => 'required|integer',
@@ -29,7 +28,27 @@ class BesoinModel extends Model
     ];
 
     
-    public function getBesoins($statut){
-        return $this->where('statut', $statut)->findAll();
+    public function getBesoins($statut)
+    {
+        return $this->select('
+                besoins.reference,
+                departements.nom AS departements,
+                utilisateurs.nom AS manager,
+                besoins.intitule_poste,
+                besoins.nb_postes,
+                besoins.type_contrat,
+                besoins.motif,
+                besoins.niveau_experience,
+                besoins.salaire_propose,
+                besoins.date_prise_poste,
+                besoins.missions,
+                besoins.competences,
+                besoins.urgence,
+                besoins.statut
+            ')
+            ->join('departements', 'departements.id = besoins.departement_id', 'left')
+            ->join('utilisateurs', 'utilisateurs.id = besoins.manager_id', 'left')
+            ->where('besoins.statut', $statut)
+            ->findAll();
     }
 }
