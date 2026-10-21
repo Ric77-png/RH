@@ -8,6 +8,7 @@ class BesoinModel extends Model
 {
     protected $table = 'besoins';
     protected $table2= 'besoin_validations';
+     protected $table3= 'annonces';
     protected $primaryKey = 'id';
     protected $allowedFields = ['reference','departements_id','manager_id','intitule_poste','nb_postes','type_contrat','motif','niveau_experience','salaire_propose','date_prise_poste','missions','competences','urgence','statut','created_at','updated_at'];
 
@@ -75,4 +76,21 @@ class BesoinModel extends Model
         return $this->getBesoins($statut);
     }
 
+    //Insertion ana annonce rehefa miova ny statut an 'ilay besoin
+    function insertAnnonce($besoinID,$rhID,$titre,$lieu,$description,$profilRechercher,$afficherSalaire,$dateLimite,$statut)
+    {
+        $data = [
+            'besoin_id' => $besoinID,
+            'rh_id' => $rhID,
+            'titre' => $titre,
+            'lieu' => $lieu,
+            'description' => $description,
+            'profil_rechercher' => $profilRechercher,
+            'afficher_salaire' => $afficherSalaire,
+            'date_limite' => $dateLimite,
+            'statut' => $statut
+        ];
+
+        return $this->db->table($this->table3)->insert($data);
+    }
 }

@@ -10,6 +10,7 @@ class BudgetModel extends Model
     protected $table2= 'exercices';
     protected $table3= 'besoins';
     protected $table4= 'besoin_validations';
+   
     protected $primaryKey = 'id';
     protected $allowedFields = ['exercice_id ','departement_id','sens','categorie ','montant','libelle','statut','virement_ref','besoin_id','cree_par','date_mouvement','created_at','updated_at'];
 
@@ -92,4 +93,7 @@ public function enregistrerValidation($id_utilisateur,$id_besoin,$decision,$comm
         'date_action ' => date('Y-m-d H:i:s')
     ]);
 }
+
+
+
 }
