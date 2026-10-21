@@ -36,4 +36,13 @@ class RhController extends ResourceController
             'data' => $besoin,
         ]);
     }
+
+    public function getAnnonce(){
+        $statut = 'annonce_publiee';
+        $besoins = $this->besoinModel->getAnnonce($statut);
+
+        return $this->respond([
+            'data' => $besoins,
+        ]);
+    }
 }

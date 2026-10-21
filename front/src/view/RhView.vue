@@ -11,8 +11,6 @@ const { needs, loading, error, refresh } = useNeeds()
       <div>
         <p class="eyebrow">Ressources humaines</p>
         
-        Notification:{{ needs.length }}
-        
         <h2>Liste des besoins</h2>
         <p class="rh-page__intro">Consultez les besoins transmis au service RH.</p>
       </div>

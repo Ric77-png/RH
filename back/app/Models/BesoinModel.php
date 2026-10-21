@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class BesoinModel extends Model
 {
     protected $table = 'besoins';
+    protected $table2= 'besoin_validations';
     protected $primaryKey = 'id';
     protected $allowedFields = ['reference','departements_id','manager_id','intitule_poste','nb_postes','type_contrat','motif','niveau_experience','salaire_propose','date_prise_poste','missions','competences','urgence','statut','created_at','updated_at'];
 
@@ -31,14 +32,17 @@ class BesoinModel extends Model
     public function getBesoins($status){
         return $this->select('
             besoins.reference,
-            departements.nom AS departements,
+            departements.nom AS departement,
             besoins.intitule_poste,
             besoins.nb_postes,
+            besoins.salaire_propose,
             besoins.statut,
-            besoins.urgence
+            besoins.urgence,
+            besoins.updated_at
         ')
             ->join('departements', 'departements.id = besoins.departement_id', 'left')
             ->where('besoins.statut', $status)
+            ->orderBy('besoins.updated_at', 'DESC')
             ->findAll();
     }
 
@@ -66,4 +70,9 @@ class BesoinModel extends Model
             ->where('besoins.reference', $reference)
             ->findAll();
     }
+
+    public function getAnnonce($statut){
+        return $this->getBesoins($statut);
+    }
+
 }

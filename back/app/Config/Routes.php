@@ -12,6 +12,7 @@ $routes->get('dashboard', 'Dashboard::index');
 
 $routes->group('api', static function ($r) {
     $r->get('rh/needs', 'Rh\RhController::index');
+    $r->get('rh/needs/annonces', 'Rh\RhController::getAnnonce');
     $r->get('rh/needs/(:segment)', 'Rh\RhController::getDetails/$1');
 });
 

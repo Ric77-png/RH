@@ -1,0 +1,1 @@
+ALTER TABLE utilisateurs MODIFY COLUMN role ENUM('candidat','employe','manager','rh','finance','direction') NOT NULL;
