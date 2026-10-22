@@ -36,8 +36,10 @@ class BesoinController extends ResourceController
                 'besoins.nb_postes',
                 'besoins.statut',
                 'besoins.urgence',
-                'besoins.salaire_propose',
-                'besoins.created_at'
+                'poste.nom AS poste',
+                'poste.salaire_min',
+                'poste.salaire_max',
+                'besoins.created_at',
             ])
             ->join('departements', 'departements.id = besoins.departement_id', 'left')
             ->where('besoins.manager_id', $managerId)
