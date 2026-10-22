@@ -1,18 +1,21 @@
-import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import { fileURLToPath } from 'node:url'
 
-// https://vite.dev/config/
 export default defineConfig({
+  plugins: [
+    vue(),
+    vueDevTools(),
+  ],
   server: {
     port: 5173,
     strictPort: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8081',
+        target: 'http://localhost:8080',
         changeOrigin: true,
+        secure: false,
       },
       '/vitrine': {
         target: 'http://localhost:5174',
@@ -20,13 +23,23 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })
+// =======
+//   plugins: [vue(), vueDevTools()],
+//   server: {
+//     proxy: {
+//       '/api': {
+//         target: 'http://localhost:8080',
+//         changeOrigin: true,
+//         secure: false
+//       }
+//     }
+//   }
+// })
+// >>>>>>> Stashed changes

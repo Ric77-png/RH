@@ -10,25 +10,28 @@ class BesoinModel extends Model
     protected $table2= 'besoin_validations';
      protected $table3= 'annonces';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['reference','departements_id','manager_id','intitule_poste','nb_postes','type_contrat','motif','niveau_experience','salaire_propose','date_prise_poste','missions','competences','urgence','statut','created_at','updated_at'];
+    protected $useTimestamps = true;
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+     protected $returnType = 'array';
 
-    protected $validationRules = [
-        'reference' => 'required',
-        'departements_id' => 'required|integer',
-        'manager_id' => 'required|integer',
-        'intitule_poste' => 'required',
-        'nb_postes' => 'required|integer',
-        'type_contrat' => 'required',
-        'motif' => 'required|in_list[manque_effectif,remplacement,nouveau_projet]',
-        'niveau_experience' => 'required',
-        'salaire_propose' => 'required|numeric',
-        'date_prise_poste' => 'required|valid_date',
-        'missions' => 'required',
-        'competences' => 'required',
-        'urgence' => 'required|in_list[normal,urgent]',
-        'statut' => 'required|in_list[bruillon,envoye_rh,envoye_finance,envoye_direction,valide,refuse,annonce_publiee]',
+    // IMPORTANT: obligatoire pour insert/update
+    protected $allowedFields = [
+        'reference',
+        'departement_id',
+        'manager_id',
+        'intitule_poste',
+        'nb_postes',
+        'type_contrat',
+        'motif',
+        'niveau_experience',
+        'salaire_propose',
+        'date_prise_poste',
+        'missions',
+        'competences',
+        'urgence',
+        'statut',
     ];
-
     
     public function getBesoins($status){
         return $this->select('
@@ -49,27 +52,32 @@ class BesoinModel extends Model
 
     public function getBesoinsDetails($reference)
     {
-        return $this->select('
-                besoins.reference,
-                departements.nom AS departements,
-                utilisateurs.nom AS manager,
-                besoins.intitule_poste,
-                besoins.nb_postes,
-                besoins.type_contrat,
-                besoins.motif,
-                besoins.niveau_experience,
-                besoins.salaire_propose,
-                besoins.date_prise_poste,
-                besoins.missions,
-                besoins.competences,
-                besoins.urgence,
-                besoins.statut,
-                besoins.created_at
-            ')
-            ->join('departements', 'departements.id = besoins.departement_id', 'left')
-            ->join('utilisateurs', 'utilisateurs.id = besoins.manager_id', 'left')
-            ->where('besoins.reference', $reference)
-            ->findAll();
+        $builder = $this->db->table($this->table . ' as b');
+
+        $builder->select([
+            'b.id',
+            'b.reference',
+            'd.nom AS departement',
+            'u.nom AS manager_nom',
+            'b.intitule_poste',
+            'b.nb_postes',
+            'b.type_contrat',
+            'b.motif',
+            'b.niveau_experience',
+            'b.salaire_propose',
+            'b.date_prise_poste',
+            'b.missions',
+            'b.competences',
+            'b.urgence',
+            'b.statut',
+            'b.created_at',
+        ]);
+
+        $builder->join('departements d', 'd.id = b.departement_id', 'left');
+        $builder->join('utilisateurs u', 'u.id = b.manager_id', 'left');
+        $builder->where('b.reference', $reference);
+
+        return $builder->get()->getRowArray();
     }
 
     public function getAnnonce($statut){
