@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class BesoinModel extends Model
 {
     protected $table = 'besoins';
+
     protected $table2= 'besoin_validations';
      protected $table3= 'annonces';
     protected $primaryKey = 'id';
@@ -101,4 +102,5 @@ class BesoinModel extends Model
 
         return $this->db->table($this->table3)->insert($data);
     }
+
 }
