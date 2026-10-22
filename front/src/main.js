@@ -1,11 +1,18 @@
+
 import './assets/main.css'
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 import { createApp } from 'vue'
-// import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-createApp(App)
-// .use(createPinia()) 
-.use(router)
-.mount('#app')
+import CoreuiVue from '@coreui/vue'
+import CIcon from '@coreui/icons-vue'
+
+const app = createApp(App)
+
+app.use(router)
+app.use(CoreuiVue)
+app.component('CIcon', CIcon)
+
+app.mount('#app')

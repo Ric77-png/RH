@@ -1,124 +1,59 @@
-<template>
-  <div class="auth-shell">
-    <div class="auth-card">
-      <div class="tabs">
-        <button :class="{ active: isLoginTab }" type="button" @click="isLoginTab = true">Connexion</button>
-        <button :class="{ active: !isLoginTab }" type="button" @click="isLoginTab = false">Créer un compte</button>
-      </div>
-
-      <div v-if="isLoginTab">
-        <h2>Login</h2>
-        <form @submit.prevent="handleLogin" novalidate>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" v-model="email" required />
-          </div>
-          <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" v-model="password" required />
-          </div>
-          <div v-if="error" class="error-msg">{{ error }}</div>
-          <button type="submit" :disabled="isLoading">
-            {{ isLoading ? 'Connexion...' : 'Se connecter' }}
-          </button>
-        </form>
-      </div>
-
-      <div v-else>
-        <h2>Inscription candidat</h2>
-        <form @submit.prevent="handleRegister" novalidate>
-          <div class="form-group">
-            <label for="firstName">Prénom</label>
-            <input id="firstName" v-model="firstName" required />
-          </div>
-          <div class="form-group">
-            <label for="lastName">Nom</label>
-            <input id="lastName" v-model="lastName" required />
-          </div>
-          <div class="form-group">
-            <label for="department">Département souhaité</label>
-            <select id="department" v-model="departmentId" required>
-              <option value="">Choisir un département</option>
-              <option value="1">Informatique</option>
-              <option value="2">Finance</option>
-              <option value="3">RH</option>
-              <option value="4">Marketing</option>
-              <option value="5">Administration</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="telephone">Numéro de téléphone</label>
-            <input id="telephone" v-model="telephone" type="tel" inputmode="tel" placeholder="0601020304" required />
-          </div>
-          <div class="form-group">
-            <label for="registerEmail">Email</label>
-            <input type="email" id="registerEmail" v-model="registerEmail" required />
-          </div>
-          <div class="form-group">
-            <label for="registerPassword">Mot de passe</label>
-            <input type="password" id="registerPassword" v-model="registerPassword" required />
-          </div>
-          <div v-if="registerError" class="error-msg">{{ registerError }}</div>
-          <button type="submit" :disabled="isLoading">
-            {{ isLoading ? 'Création...' : 'Créer mon compte' }}
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 
+const router = useRouter()
+const authStore = useAuthStore()
+
+const isLoginTab = ref(true)
+const showPassword = ref(false)
+const showRegisterPassword = ref(false)
+
 const email = ref('')
 const password = ref('')
+
 const firstName = ref('')
 const lastName = ref('')
 const departmentId = ref('')
 const telephone = ref('')
 const registerEmail = ref('')
 const registerPassword = ref('')
+
 const error = ref('')
 const registerError = ref('')
 const isLoading = ref(false)
-const isLoginTab = ref(true)
 
-const router = useRouter()
-const authStore = useAuthStore()
+const validateEmail = (value) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 
-const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-const validatePhone = (value) => /^\+?[0-9\s.-]{8,15}$/.test(value)
+const validatePhone = (value) =>
+  /^\+?[0-9\s.-]{8,15}$/.test(value)
 
 const redirectByRole = (role) => {
-  switch (role) {
-    case 'manager':
-      router.push({ name: 'manager-dashboard' })
-      break
-    case 'rh':
-      router.push({ name: 'rh-dashboard' })
-      break
-    case 'finance':
-      router.push({ name: 'finance-dashboard' })
-      break
-    case 'direction':
-      router.push({ name: 'direction-dashboard' })
-      break
-    case 'candidat':
-      router.push({ name: 'candidat-dashboard' })
-      break
-    default:
-      router.push({ name: 'accueil' })
+  const destinations = {
+    manager: 'manager-dashboard',
+    rh: 'rh-dashboard',
+    finance: 'finance-dashboard',
+    direction: 'direction-dashboard',
+    candidat: 'candidat-dashboard',
+  }
+
+  const destination = destinations[role]
+
+  if (destination) {
+    router.push({ name: destination })
+  } else {
+    router.push({ name: 'login' })
   }
 }
 
 const handleLogin = async () => {
   error.value = ''
 
-  if (!validateEmail(email.value)) {
-    error.value = 'Veuillez entrer un email valide.'
+  if (!validateEmail(email.value.trim())) {
+    error.value = 'Veuillez entrer une adresse email valide.'
     return
   }
 
@@ -130,10 +65,14 @@ const handleLogin = async () => {
   isLoading.value = true
 
   try {
-    const user = await authStore.login(email.value, password.value)
+    const user = await authStore.login(
+      email.value.trim(),
+      password.value,
+    )
+
     redirectByRole(user.role)
   } catch (err) {
-    error.value = err.message || 'Erreur de connexion'
+    error.value = err.message || 'Erreur de connexion.'
   } finally {
     isLoading.value = false
   }
@@ -157,8 +96,8 @@ const handleRegister = async () => {
     return
   }
 
-  if (!validateEmail(registerEmail.value)) {
-    registerError.value = 'Veuillez entrer un email valide.'
+  if (!validateEmail(registerEmail.value.trim())) {
+    registerError.value = 'Veuillez entrer une adresse email valide.'
     return
   }
 
@@ -178,101 +117,249 @@ const handleRegister = async () => {
       Number(departmentId.value),
       telephone.value.trim(),
     )
+
     redirectByRole(user.role)
   } catch (err) {
-    registerError.value = err.message || 'Erreur d’inscription'
+    registerError.value = err.message || 'Erreur d’inscription.'
   } finally {
     isLoading.value = false
   }
 }
 </script>
 
-<style scoped>
-.auth-shell {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: #f3f4f6;
-}
+<template>
+  <div class="bg-body-tertiary min-vh-100 d-flex align-items-center py-4">
+    <CContainer>
+      <CRow class="justify-content-center">
+        <CCol :xs="12" :sm="10" :md="8" :lg="6" :xl="5">
+          <CCard class="shadow-sm border-0">
+            <CCardBody class="p-4 p-md-5">
 
-.auth-card {
-  width: min(560px, calc(100% - 2rem));
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-  padding: 2rem;
-}
+              <div class="text-center mb-4">
+                <h1 class="h3 fw-bold mb-2">
+                  Gestion RH
+                </h1>
+                <p class="text-body-secondary mb-0">
+                  Bienvenue sur votre espace professionnel
+                </p>
+              </div>
 
-.tabs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
+              <CRow class="g-2 mb-4">
+                <CCol :xs="6">
+                  <CButton
+                    type="button"
+                    class="w-100"
+                    :color="isLoginTab ? 'primary' : 'secondary'"
+                    :variant="isLoginTab ? undefined : 'outline'"
+                    @click="isLoginTab = true; error = ''"
+                  >
+                    Connexion
+                  </CButton>
+                </CCol>
 
-.tabs button {
-  border: 1px solid #d1d5db;
-  border-radius: 999px;
-  background: #f9fafb;
-  padding: 0.7rem 1rem;
-  cursor: pointer;
-  font-weight: 600;
-}
+                <CCol :xs="6">
+                  <CButton
+                    type="button"
+                    class="w-100"
+                    :color="!isLoginTab ? 'primary' : 'secondary'"
+                    :variant="!isLoginTab ? undefined : 'outline'"
+                    @click="isLoginTab = false; registerError = ''"
+                  >
+                    Créer un compte
+                  </CButton>
+                </CCol>
+              </CRow>
 
-.tabs button.active {
-  background: #2563eb;
-  color: white;
-  border-color: #2563eb;
-}
+              <template v-if="isLoginTab">
+                <h2 class="h5 fw-semibold mb-4">
+                  Connectez-vous à votre compte
+                </h2>
 
-h2 {
-  margin-bottom: 1.5rem;
-  font-size: clamp(2rem, 3vw, 3rem);
-  font-weight: 800;
-}
+                <CForm @submit.prevent="handleLogin" novalidate>
+                  <div class="mb-3">
+                    <CFormLabel for="loginEmail">
+                      Adresse email
+                    </CFormLabel>
+                    <CFormInput
+                      id="loginEmail"
+                      v-model="email"
+                      type="email"
+                      placeholder="vous@exemple.com"
+                      autocomplete="email"
+                      required
+                    />
+                  </div>
 
-.form-group {
-  margin-bottom: 15px;
-}
+                  <div class="mb-3">
+                    <CFormLabel for="loginPassword">
+                      Mot de passe
+                    </CFormLabel>
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
+                    <CInputGroup>
+                      <CFormInput
+                        id="loginPassword"
+                        v-model="password"
+                        :type="showPassword ? 'text' : 'password'"
+                        placeholder="Votre mot de passe"
+                        autocomplete="current-password"
+                        required
+                      />
+                      <CButton
+                        type="button"
+                        color="secondary"
+                        variant="outline"
+                        @click="showPassword = !showPassword"
+                        :aria-label="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+                      >
+                        {{ showPassword ? 'Masquer' : 'Afficher' }}
+                      </CButton>
+                    </CInputGroup>
+                  </div>
 
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  box-sizing: border-box;
-  font-size: 1rem;
-  background: #fff;
-}
+                  <CAlert v-if="error" color="danger" class="mb-3">
+                    {{ error }}
+                  </CAlert>
 
-.error-msg {
-  color: #dc2626;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
+                  <CButton
+                    type="submit"
+                    color="primary"
+                    class="w-100 mt-2"
+                    :disabled="isLoading"
+                  >
+                    {{ isLoading ? 'Connexion en cours...' : 'Se connecter' }}
+                  </CButton>
+                </CForm>
+              </template>
 
-button[type='submit'] {
-  width: 100%;
-  padding: 14px;
-  background: #111827;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
+              <template v-else>
+                <h2 class="h5 fw-semibold mb-4">
+                  Inscription candidat
+                </h2>
 
-button:disabled {
-  opacity: 0.7;
-  cursor: wait;
-}
-</style>
+                <CForm @submit.prevent="handleRegister" novalidate>
+                  <CRow>
+                    <CCol :md="6" class="mb-3">
+                      <CFormLabel for="firstName">Prénom</CFormLabel>
+                      <CFormInput
+                        id="firstName"
+                        v-model="firstName"
+                        autocomplete="given-name"
+                        required
+                      />
+                    </CCol>
+
+                    <CCol :md="6" class="mb-3">
+                      <CFormLabel for="lastName">Nom</CFormLabel>
+                      <CFormInput
+                        id="lastName"
+                        v-model="lastName"
+                        autocomplete="family-name"
+                        required
+                      />
+                    </CCol>
+                  </CRow>
+
+                  <div class="mb-3">
+                    <CFormLabel for="department">
+                      Département souhaité
+                    </CFormLabel>
+
+                    <select
+                      id="department"
+                      v-model="departmentId"
+                      class="form-select"
+                      required
+                    >
+                      <option value="">Choisir un département</option>
+                      <option value="1">Informatique</option>
+                      <option value="2">Finance</option>
+                      <option value="3">RH</option>
+                      <option value="4">Marketing</option>
+                      <option value="5">Administration</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <CFormLabel for="telephone">
+                      Numéro de téléphone
+                    </CFormLabel>
+                    <CFormInput
+                      id="telephone"
+                      v-model="telephone"
+                      type="tel"
+                      autocomplete="tel"
+                      placeholder="0601020304"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <CFormLabel for="registerEmail">
+                      Adresse email
+                    </CFormLabel>
+                    <CFormInput
+                      id="registerEmail"
+                      v-model="registerEmail"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="vous@exemple.com"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <CFormLabel for="registerPassword">
+                      Mot de passe
+                    </CFormLabel>
+
+                    <CInputGroup>
+                      <CFormInput
+                        id="registerPassword"
+                        v-model="registerPassword"
+                        :type="showRegisterPassword ? 'text' : 'password'"
+                        autocomplete="new-password"
+                        required
+                      />
+                      <CButton
+                        type="button"
+                        color="secondary"
+                        variant="outline"
+                        @click="showRegisterPassword = !showRegisterPassword"
+                      >
+                        {{ showRegisterPassword ? 'Masquer' : 'Afficher' }}
+                      </CButton>
+                    </CInputGroup>
+                  </div>
+
+                  <CAlert
+                    v-if="registerError"
+                    color="danger"
+                    class="mb-3"
+                  >
+                    {{ registerError }}
+                  </CAlert>
+
+                  <CButton
+                    type="submit"
+                    color="primary"
+                    class="w-100 mt-2"
+                    :disabled="isLoading"
+                  >
+                    {{ isLoading ? 'Création en cours...' : 'Créer mon compte' }}
+                  </CButton>
+                </CForm>
+              </template>
+
+              <div class="text-center mt-4">
+                <small class="text-body-secondary">
+                  Application de gestion d'entreprise
+                </small>
+              </div>
+
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+    </CContainer>
+  </div>
+</template>
