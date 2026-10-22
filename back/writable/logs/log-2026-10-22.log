@@ -843,3 +843,433 @@ in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
 13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
 15 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+ERROR - 2026-10-22 11:04:26 --> Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 5 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:04:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+[Method: GET, Route: api/manager/needs/postes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 2 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 4 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 6 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:04:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 4 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:04:26 --> [Caused by] mysqli_sql_exception: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 5 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+DEBUG - 2026-10-22 11:04:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-10-22 11:04:26 --> Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:04:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+[Method: GET, Route: api/manager/needs]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:04:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:04:26 --> [Caused by] mysqli_sql_exception: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+ERROR - 2026-10-22 11:06:25 --> Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 5 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:06:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+[Method: GET, Route: api/manager/needs/postes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 2 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 4 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 6 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:06:25 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 4 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:06:25 --> [Caused by] mysqli_sql_exception: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nom`, `salaire_min`, `salaire_max`
+FROM `poste`
+ORDER BY `nom` ASC', [], false)
+ 5 APPPATH\Models\ManagerBesoinModel.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Manager\BesoinController.php(69): App\Models\ManagerBesoinModel->getPostes()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->postes()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+DEBUG - 2026-10-22 11:06:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-10-22 11:06:25 --> Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:06:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+[Method: GET, Route: api/manager/needs]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:06:25 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
+CRITICAL - 2026-10-22 11:06:25 --> [Caused by] mysqli_sql_exception: Table 'entreprise.poste' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = 1
+AND `besoins`.`statut` IN (\'brouillon\',\'envoye_rh\')
+ORDER BY `besoins`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `besoins`.`id`, `besoins`.`reference`, `departements`.`nom` AS `departement`, `poste`.`nom` AS `poste`, `poste`.`salaire_min`, `poste`.`salaire_max`, `besoins`.`intitule_poste`, `besoins`.`nb_postes`, `besoins`.`statut`, `besoins`.`urgence`, `besoins`.`created_at`
+FROM `besoins`
+LEFT JOIN `departements` ON `departements`.`id` = `besoins`.`departement_id`
+LEFT JOIN `poste` ON `poste`.`id` = `besoins`.`poste_id`
+WHERE `besoins`.`manager_id` = :besoins.manager_id:
+AND `besoins`.`statut` IN :besoins.statut:
+ORDER BY `besoins`.`created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Manager\BesoinController.php(47): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Manager\BesoinController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Manager\BesoinController))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\m.Tovo\\RH\\back\\public\\index.php')
