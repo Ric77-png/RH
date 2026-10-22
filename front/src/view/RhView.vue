@@ -10,7 +10,7 @@ const { needs, loading, error, refresh } = useNeeds()
     <div class="rh-page__heading">
       <div>
         <p class="eyebrow">Ressources humaines</p>
-        
+        <p>Notification:{{needs.length }}</p>
         <h2>Liste des besoins</h2>
         <p class="rh-page__intro">Consultez les besoins transmis au service RH.</p>
       </div>
