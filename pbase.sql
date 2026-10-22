@@ -260,7 +260,11 @@ CREATE TABLE negociations (
   CONSTRAINT fk_neg_contrat FOREIGN KEY (contrat_id) REFERENCES contrats(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
 
+=======
+ALTER TABLE utilisateurs MODIFY COLUMN role ENUM('employe','manager','rh','finance','direction','candidat') NOT NULL;
+>>>>>>> login
 
 -- ============================================================
 --  EXEMPLES D'UTILISATION DU BUDGET (à adapter, ids fictifs)
