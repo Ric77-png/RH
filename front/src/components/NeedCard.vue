@@ -18,7 +18,7 @@ function valueOf(need, keys, fallback = '—') {
     <td>{{ valueOf(need, ['departement']) }}</td>
     <td>{{ valueOf(need, ['intitule_poste']) }}</td>
     <td>{{ valueOf(need, ['nb_postes']) }}</td>
-    <td>{{ valueOf(need, ['salaire_propose']) }}</td>
+    <td>{{ need.poste ? `${need.poste} (${need.salaire_min} - ${need.salaire_max})` : '-' }}</td>
     <td><span class="badge">{{ valueOf(need, ['statut']) }}</span></td>
   </tr>
 </template>

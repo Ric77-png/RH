@@ -13,23 +13,36 @@ class ManagerBesoinModel extends Model
     protected $updatedField = 'updated_at';
     protected $returnType = 'array';
 
-    // IMPORTANT: obligatoire pour insert/update
     protected $allowedFields = [
         'reference',
         'departement_id',
+        'poste_id',
         'manager_id',
         'intitule_poste',
         'nb_postes',
         'type_contrat',
         'motif',
         'niveau_experience',
-        'salaire_propose',
         'date_prise_poste',
         'missions',
         'competences',
         'urgence',
         'statut',
     ];
+
+    public function getPostes(): array
+    {
+        return $this->db->table('poste')
+            ->select([
+                'id',
+                'nom',
+                'salaire_min',
+                'salaire_max',
+            ])
+            ->orderBy('nom', 'ASC')
+            ->get()
+            ->getResultArray();
+    }
 
     public function getBesoins($status = null, $managerId = null)
     {
@@ -39,6 +52,9 @@ class ManagerBesoinModel extends Model
             'b.id',
             'b.reference',
             'd.nom AS departement',
+            'p.nom AS poste',
+            'p.salaire_min',
+            'p.salaire_max',
             'b.intitule_poste',
             'b.nb_postes',
             'b.statut',
@@ -48,6 +64,7 @@ class ManagerBesoinModel extends Model
         ]);
 
         $builder->join('departements d', 'd.id = b.departement_id', 'left');
+        $builder->join('poste p', 'p.id = b.poste_id', 'left');
         $builder->join('utilisateurs u', 'u.id = b.manager_id', 'left');
 
         if ($status !== null) {
@@ -62,7 +79,6 @@ class ManagerBesoinModel extends Model
             ->orderBy('b.created_at', 'DESC')
             ->get()
             ->getResultArray();
-
     }
 
     public function getBesoinsDetails($reference)
@@ -73,13 +89,15 @@ class ManagerBesoinModel extends Model
             'b.id',
             'b.reference',
             'd.nom AS departement',
+            'p.nom AS poste',
+            'p.salaire_min',
+            'p.salaire_max',
             'u.nom AS manager_nom',
             'b.intitule_poste',
             'b.nb_postes',
             'b.type_contrat',
             'b.motif',
             'b.niveau_experience',
-            'b.salaire_propose',
             'b.date_prise_poste',
             'b.missions',
             'b.competences',
@@ -89,6 +107,7 @@ class ManagerBesoinModel extends Model
         ]);
 
         $builder->join('departements d', 'd.id = b.departement_id', 'left');
+        $builder->join('poste p', 'p.id = b.poste_id', 'left');
         $builder->join('utilisateurs u', 'u.id = b.manager_id', 'left');
         $builder->where('b.reference', $reference);
 
@@ -99,7 +118,6 @@ class ManagerBesoinModel extends Model
     {
         return $this->findAll();
     }
-
 
     public function getBesoinsParStatut(string $statut, ?int $managerId = null): array
     {
@@ -113,7 +131,6 @@ class ManagerBesoinModel extends Model
 
     public function getEnvoyesRH(?int $managerId = null): array
     {
-        return $this->getBesoins('envoye_RH', $managerId);
+        return $this->getBesoins('envoye_rh', $managerId);
     }
-
 }

@@ -28,6 +28,7 @@ $routes->group('api', static function ($r) {
     $r->post('manager/needs', 'Manager\BesoinController::store');
     $r->post('manager/departements', 'Manager\DepartementController::index');
     $r->get('manager/needs/statut/(:segment)', 'Manager\BesoinController::byStatut/$1');
+    $r->get('manager/needs/postes', 'Manager\BesoinController::postes');
 
 });
 

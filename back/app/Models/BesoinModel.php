@@ -7,45 +7,47 @@ use CodeIgniter\Model;
 class BesoinModel extends Model
 {
     protected $table = 'besoins';
-
-    protected $table2= 'besoin_validations';
-     protected $table3= 'annonces';
+    protected $table2 = 'besoin_validations';
+    protected $table3 = 'annonces';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-     protected $returnType = 'array';
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $returnType = 'array';
 
-    // IMPORTANT: obligatoire pour insert/update
     protected $allowedFields = [
         'reference',
         'departement_id',
+        'poste_id',
         'manager_id',
         'intitule_poste',
         'nb_postes',
         'type_contrat',
         'motif',
         'niveau_experience',
-        'salaire_propose',
         'date_prise_poste',
         'missions',
         'competences',
         'urgence',
         'statut',
     ];
-    
-    public function getBesoins($status){
+
+    public function getBesoins($status)
+    {
         return $this->select('
             besoins.reference,
             departements.nom AS departement,
+            poste.nom AS poste,
+            poste.salaire_min,
+            poste.salaire_max,
             besoins.intitule_poste,
             besoins.nb_postes,
-            besoins.salaire_propose,
             besoins.statut,
             besoins.urgence,
             besoins.updated_at
         ')
             ->join('departements', 'departements.id = besoins.departement_id', 'left')
+            ->join('poste', 'poste.id = besoins.poste_id', 'left')
             ->where('besoins.statut', $status)
             ->orderBy('besoins.updated_at', 'DESC')
             ->findAll();
@@ -59,13 +61,15 @@ class BesoinModel extends Model
             'b.id',
             'b.reference',
             'd.nom AS departement',
+            'p.nom AS poste',
+            'p.salaire_min',
+            'p.salaire_max',
             'u.nom AS manager_nom',
             'b.intitule_poste',
             'b.nb_postes',
             'b.type_contrat',
             'b.motif',
             'b.niveau_experience',
-            'b.salaire_propose',
             'b.date_prise_poste',
             'b.missions',
             'b.competences',
@@ -75,18 +79,19 @@ class BesoinModel extends Model
         ]);
 
         $builder->join('departements d', 'd.id = b.departement_id', 'left');
+        $builder->join('poste p', 'p.id = b.poste_id', 'left');
         $builder->join('utilisateurs u', 'u.id = b.manager_id', 'left');
         $builder->where('b.reference', $reference);
 
         return $builder->get()->getRowArray();
     }
 
-    public function getAnnonce($statut){
+    public function getAnnonce($statut)
+    {
         return $this->getBesoins($statut);
     }
 
-    //Insertion ana annonce rehefa miova ny statut an 'ilay besoin
-    function insertAnnonce($besoinID,$rhID,$titre,$lieu,$description,$profilRechercher,$afficherSalaire,$dateLimite,$statut)
+    public function insertAnnonce($besoinID, $rhID, $titre, $lieu, $description, $profilRechercher, $afficherSalaire, $dateLimite, $statut)
     {
         $data = [
             'besoin_id' => $besoinID,
@@ -102,5 +107,4 @@ class BesoinModel extends Model
 
         return $this->db->table($this->table3)->insert($data);
     }
-
 }
