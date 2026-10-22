@@ -21,6 +21,8 @@ $routes->group('api', static function ($r) {
     $r->get('manager/needs', 'Manager\BesoinController::index');
     $r->post('manager/needs', 'Manager\BesoinController::store');
     $r->post('manager/departements', 'Manager\DepartementController::index');
+    $r->get('manager/needs/statut/(:segment)', 'Manager\BesoinController::byStatut/$1');
+
 });
 
 // Routes RH à activer après la création du filtre d'authentification.
