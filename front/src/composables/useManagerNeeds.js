@@ -1,4 +1,4 @@
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { apiFetch } from '../services/api'
 
 function createEmptyForm() {
@@ -24,6 +24,13 @@ export function useManagerNeeds() {
   const loading = ref(false)
   const error = ref('')
   const form = ref(createEmptyForm())
+  const selectedStatus = ref('all')
+
+  const filteredNeeds = computed(() => {
+    if (!needs.value) return []
+    if (selectedStatus.value === 'all') return needs.value
+    return needs.value.filter((need) => need.statut === selectedStatus.value)
+  })
 
   async function loadDepartments() {
     try {
@@ -41,8 +48,6 @@ export function useManagerNeeds() {
     try {
       const response = await apiFetch('/api/manager/needs')
 
-      console.log('Réponse API Manager :', response)
-
       needs.value = Array.isArray(response)
         ? response
         : Array.isArray(response?.data)
@@ -57,40 +62,37 @@ export function useManagerNeeds() {
     }
   }
 
-  // ...existing code...
+  async function submitNeed(payloadFromForm) {
+    error.value = ''
 
-async function submitNeed(payloadFromForm) {
-  error.value = ''
+    try {
+      const payload = {
+        ...payloadFromForm,
+        departement_id: Number(payloadFromForm.departement_id),
+        nb_postes: Number(payloadFromForm.nb_postes),
+        salaire_propose: Number(payloadFromForm.salaire_propose),
+        is_draft: Boolean(payloadFromForm.is_draft),
+      }
 
-  try {
-    const payload = {
-      ...payloadFromForm,
-      departement_id: Number(payloadFromForm.departement_id),
-      nb_postes: Number(payloadFromForm.nb_postes),
-      salaire_propose: Number(payloadFromForm.salaire_propose),
-      is_draft: Boolean(payloadFromForm.is_draft),
+      await apiFetch('/api/manager/needs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      form.value = createEmptyForm()
+      await refresh()
+      return true
+    } catch (err) {
+      error.value = err instanceof Error
+        ? err.message
+        : 'Erreur lors de l’ajout du besoin.'
+      return false
     }
-
-    await apiFetch('/api/manager/needs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
-
-    form.value = createEmptyForm()
-    await refresh()
-    return true
-  } catch (err) {
-    error.value = err instanceof Error
-      ? err.message
-      : 'Erreur lors de l’ajout du besoin.'
-    return false
   }
-}
 
-// ...existing code...
   onMounted(async () => {
     await loadDepartments()
     await refresh()
@@ -98,10 +100,12 @@ async function submitNeed(payloadFromForm) {
 
   return {
     needs,
+    filteredNeeds,
     departments,
     loading,
     error,
     form,
+    selectedStatus,
     refresh,
     submitNeed,
   }
