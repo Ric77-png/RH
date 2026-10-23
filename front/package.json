@@ -9,6 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< Updated upstream
+=======
+    "@coreui/chartjs": "^4.2.0",
+    "@coreui/coreui": "^5.9.1",
+    "@coreui/icons": "^3.1.0",
+    "@coreui/icons-vue": "^2.2.0",
+    "@coreui/vue": "^5.10.1",
+    "chart.js": "^4.6.1",
+    "pinia": "^4.1.0",
+    "sass": "^1.106.1",
+    "simplebar-vue": "^2.4.2",
+>>>>>>> Stashed changes
     "vue": "^3.5.42",
     "vue-router": "^5.4.0"
   },
