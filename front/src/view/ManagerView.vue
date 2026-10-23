@@ -8,6 +8,8 @@ const showForm = ref(false)
 
 const {
   needs,
+  filteredNeeds,
+  selectedStatus,
   departments,
   loading,
   error,
@@ -17,7 +19,7 @@ const {
 } = useManagerNeeds()
 
 async function handleSubmit(payload) {
-  const success = await submitNeed(payload) // <-- garder le payload (is_draft)
+  const success = await submitNeed(payload)
   if (success) {
     showForm.value = false
   }
@@ -35,6 +37,18 @@ async function handleSubmit(payload) {
         </p>
       </div>
 
+      <div class="filters">
+        <button @click="selectedStatus = 'all'" :class="{ active: selectedStatus === 'all' }">
+          Tous
+        </button>
+        <button @click="selectedStatus = 'brouillon'" :class="{ active: selectedStatus === 'brouillon' }">
+          Brouillons
+        </button>
+        <button @click="selectedStatus = 'envoye_rh'" :class="{ active: selectedStatus === 'envoye_rh' }">
+          Envoyés RH
+        </button>
+      </div>
+
       <div class="header-actions">
         <button type="button" class="secondary-button" :disabled="loading" @click="refresh">
           {{ loading ? 'Actualisation...' : 'Actualiser' }}
@@ -46,7 +60,7 @@ async function handleSubmit(payload) {
       </div>
     </header>
 
-   <ManagerNeedForm
+    <ManagerNeedForm
       v-if="showForm"
       :form="form"
       :departments="departments"
@@ -63,7 +77,7 @@ async function handleSubmit(payload) {
       Chargement des besoins...
     </p>
 
-    <NeedsList v-else :needs="needs" />
+    <NeedsList v-else :needs="filteredNeeds" />
   </main>
 </template>
 

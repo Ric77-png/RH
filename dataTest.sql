@@ -80,3 +80,28 @@ VALUES (
 );
 
 COMMIT;
+USE entreprise;
+
+-- 1. Créer un utilisateur RH
+INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, role, actif) 
+VALUES ('Martin', 'Sophie', 'sophie.rh@example.com', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdB5jWk4G1yXq1W6a', 'rh', 1);
+
+-- 2. Créer un utilisateur Finance
+INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, role, actif) 
+VALUES ('Durand', 'Paul', 'paul.finance@example.com', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdB5jWk4G1yXq1W6a', 'finance', 1);
+
+-- 3. Créer un utilisateur Direction
+INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, role, actif) 
+VALUES ('Leroy', 'Isabelle', 'isabelle.direction@example.com', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdB5jWk4G1yXq1W6a', 'direction', 1);
+
+UPDATE utilisateurs 
+SET mot_de_passe = '$2y$10$/uWfuKHA1sIgX0NHQkt1MOWnYgm4LHcq0UuMccVEmHYEtQPYZEsNK'
+WHERE email = 'marie.dupont@example.com';
+
+UPDATE utilisateurs 
+SET mot_de_passe = '$2y$10$KpAQ87jJUzgvC6EMwH0KxeaOCA.55I76GgqQf5XW1Wgy/LRJZO6Gi'
+WHERE email = 'paul.finance@example.com';
+
+UPDATE utilisateurs 
+SET mot_de_passe = '$2y$10$TkXjKrrvFQ/G3iw7xLlLLeaSSjGilmJunIywMeQyf7dl74Bl2RTWa'
+WHERE email = 'isabelle.direction@example.com';

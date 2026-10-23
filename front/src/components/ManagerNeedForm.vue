@@ -1,13 +1,19 @@
 <script setup>
-import { toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 
 const props = defineProps({
   form: { type: Object, required: true },
   departments: { type: Array, required: true },
+  postes: { type: Array, required: true },
 })
 
-const { form, departments } = toRefs(props)
+const { form, departments, postes } = toRefs(props)
 const emit = defineEmits(['submit', 'cancel'])
+
+const selectedPoste = computed(() => {
+  const id = Number(form.value.poste_id)
+  return postes.value.find((poste) => Number(poste.id) === id) || null
+})
 
 function submitNeed(isDraft = false) {
   emit('submit', {
@@ -39,6 +45,16 @@ function submitNeed(isDraft = false) {
             <option value="">Sélectionner</option>
             <option v-for="dept in departments" :key="dept.id" :value="dept.id">
               {{ dept.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="poste_id">Poste</label>
+          <select id="poste_id" v-model="form.poste_id" required>
+            <option value="">Sélectionner</option>
+            <option v-for="poste in postes" :key="poste.id" :value="poste.id">
+              {{ poste.nom }} ({{ poste.salaire_min }} - {{ poste.salaire_max }})
             </option>
           </select>
         </div>
@@ -77,11 +93,6 @@ function submitNeed(isDraft = false) {
         </div>
 
         <div>
-          <label for="salaire_propose">Salaire proposé</label>
-          <input id="salaire_propose" v-model.number="form.salaire_propose" type="number" min="0" required />
-        </div>
-
-        <div>
           <label for="date_prise_poste">Date de prise de poste</label>
           <input id="date_prise_poste" v-model="form.date_prise_poste" type="date" required />
         </div>
@@ -102,6 +113,11 @@ function submitNeed(isDraft = false) {
         <div class="full-width">
           <label for="competences">Compétences</label>
           <textarea id="competences" v-model="form.competences" rows="3" required />
+        </div>
+
+        <div v-if="selectedPoste" class="full-width salary-box">
+          <strong>Fourchette salariale :</strong>
+          {{ selectedPoste.salaire_min }} - {{ selectedPoste.salaire_max }} MGA
         </div>
       </div>
 
@@ -161,6 +177,14 @@ textarea {
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   font: inherit;
+}
+
+.salary-box {
+  padding: 0.75rem 1rem;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  border-radius: 0.5rem;
+  color: #0f172a;
 }
 
 .form-actions {
