@@ -4,6 +4,7 @@ import DefaultLayout from '../layouts/DefaultLayout.vue'
 import LoginView from '../view/LoginView.vue'
 import RhView from '../view/RhView.vue'
 import ManagerView from '../view/ManagerView.vue'
+import CandidaturesView from '../view/CandidaturesView.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
         path: 'candidat-dashboard',
         name: 'candidat-dashboard',
         component: RhView,
+      },
+      {
+        path: 'candidatures',
+        name: 'candidatures',
+        component: CandidaturesView,
       },
     ],
   },

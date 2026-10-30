@@ -3,6 +3,7 @@
 namespace App\Controllers\Manager;
 
 use App\Models\ManagerBesoinModel;
+use App\Controllers\BesoinModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class BesoinController extends ResourceController
@@ -37,7 +38,7 @@ class BesoinController extends ResourceController
                 'besoins.nb_postes',
                 'besoins.statut',
                 'besoins.urgence',
-                'besoins.salaire_propose',
+                // 'besoins.salaire_propose',
                 'besoins.created_at'
             ])
             ->join('departements', 'departements.id = besoins.departement_id', 'left')

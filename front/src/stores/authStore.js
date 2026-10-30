@@ -30,22 +30,22 @@ export function useAuthStore() {
     return data.user
   }
 
-  const register = async (nom, prenom, email, motDePasse, departmentId = null, telephone = '') => {
+  const register = async (nom, prenom, email, motDePasse, departmentId, telephone = '') => {
     const response = await fetch(`${API_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({
+      body: JSON.stringify({ 
         nom,
         prenom,
         email,
         mot_de_passe: motDePasse,
-        //departement_id: departmentId,
+        departement_id: departmentId,
         telephone,
       }),
-    })
+    }) 
 
     const data = await response.json()
 

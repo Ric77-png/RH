@@ -35,6 +35,7 @@ class BesoinModel extends Model
     public function getBesoins($status)
     {
         return $this->select('
+            annonces.id AS annonce_id,
             besoins.reference,
             departements.nom AS departement,
             poste.nom AS poste,
@@ -42,12 +43,19 @@ class BesoinModel extends Model
             poste.salaire_max,
             besoins.intitule_poste,
             besoins.nb_postes,
+            besoins.type_contrat,
+            besoins.motif,
+            besoins.niveau_experience,
+            besoins.date_prise_poste,
+            besoins.missions,
+            besoins.competences,
             besoins.statut,
             besoins.urgence,
             besoins.updated_at
         ')
             ->join('departements', 'departements.id = besoins.departement_id', 'left')
             ->join('poste', 'poste.id = besoins.poste_id', 'left')
+            ->join('annonces', "annonces.besoin_id = besoins.id AND annonces.statut = 'publiee'", 'left')
             ->where('besoins.statut', $status)
             ->orderBy('besoins.updated_at', 'DESC')
             ->findAll();
@@ -107,4 +115,10 @@ class BesoinModel extends Model
 
         return $this->db->table($this->table3)->insert($data);
     }
+
+     public function getAllBesoins()
+    {
+        return $this->findAll();
+    }
+
 }

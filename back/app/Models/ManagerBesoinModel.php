@@ -81,43 +81,43 @@ class ManagerBesoinModel extends Model
             ->getResultArray();
     }
 
-    public function getBesoinsDetails($reference)
-    {
-        $builder = $this->db->table($this->table . ' as b');
+    // public function getBesoinsDetails($reference)
+    // {
+    //     $builder = $this->db->table($this->table . ' as b');
 
-        $builder->select([
-            'b.id',
-            'b.reference',
-            'd.nom AS departement',
-            'p.nom AS poste',
-            'p.salaire_min',
-            'p.salaire_max',
-            'u.nom AS manager_nom',
-            'b.intitule_poste',
-            'b.nb_postes',
-            'b.type_contrat',
-            'b.motif',
-            'b.niveau_experience',
-            'b.date_prise_poste',
-            'b.missions',
-            'b.competences',
-            'b.urgence',
-            'b.statut',
-            'b.created_at',
-        ]);
+    //     $builder->select([
+    //         'b.id',
+    //         'b.reference',
+    //         'd.nom AS departement',
+    //         'p.nom AS poste',
+    //         'p.salaire_min',
+    //         'p.salaire_max',
+    //         'u.nom AS manager_nom',
+    //         'b.intitule_poste',
+    //         'b.nb_postes',
+    //         'b.type_contrat',
+    //         'b.motif',
+    //         'b.niveau_experience',
+    //         'b.date_prise_poste',
+    //         'b.missions',
+    //         'b.competences',
+    //         'b.urgence',
+    //         'b.statut',
+    //         'b.created_at',
+    //     ]);
 
-        $builder->join('departements d', 'd.id = b.departement_id', 'left');
-        $builder->join('poste p', 'p.id = b.poste_id', 'left');
-        $builder->join('utilisateurs u', 'u.id = b.manager_id', 'left');
-        $builder->where('b.reference', $reference);
+    //     $builder->join('departements d', 'd.id = b.departement_id', 'left');
+    //     $builder->join('poste p', 'p.id = b.poste_id', 'left');
+    //     $builder->join('utilisateurs u', 'u.id = b.manager_id', 'left');
+    //     $builder->where('b.reference', $reference);
 
-        return $builder->get()->getRowArray();
-    }
+    //     return $builder->get()->getRowArray();
+    // }
 
-    public function getAllBesoins()
-    {
-        return $this->findAll();
-    }
+    // public function getAllBesoins()
+    // {
+    //     return $this->findAll();
+    // }
 
     public function getBesoinsParStatut(string $statut, ?int $managerId = null): array
     {

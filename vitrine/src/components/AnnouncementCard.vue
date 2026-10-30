@@ -1,8 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { getAnnouncementDetails } from '../services/api'
 
-defineProps({
+const props = defineProps({
   announcement: {
     type: Object,
     required: true,
@@ -12,6 +13,17 @@ defineProps({
 const details = ref(null)
 const loadingDetails = ref(false)
 const detailsError = ref(null)
+const router = useRouter()
+
+function applyForAnnouncement(reference) {
+  void router.push({
+    name: 'postuler',
+    query: {
+      reference,
+      announcementId: props.announcement.annonce_id,
+    },
+  })
+}
 
 async function showDetails(reference) {
   details.value = null
@@ -31,23 +43,29 @@ async function showDetails(reference) {
 </script>
 
 <template>
-  <tr class="need-row">
-    <td>
+  <li class="need-row">
+    <li>
       <a href="#" @click.prevent="showDetails(announcement.reference)">
         {{ announcement.reference }}
       </a>
-    </td>
-    <td>{{ announcement.departement || 'Non renseigné' }}</td>
-    <td>{{ announcement.intitule_poste || 'Non renseigné' }}</td>
-    <td>{{ announcement.nb_postes ?? 'Non renseigné' }}</td>
-    <td>{{ announcement.salaire_propose ?? '—' }} Ar</td>
-    <td><span class="badge">{{ announcement.statut }}</span></td>
-  </tr>
-  <tr v-if="loadingDetails || detailsError || details" class="need-details-row">
-    <td colspan="6">
+    </li>
+    <li>{{ announcement.departement || 'Non renseigné' }}</li>
+    <li>{{ announcement.intitule_poste || 'Non renseigné' }}</li>
+    <li>{{ announcement.nb_postes ?? 'Non renseigné' }}</li>
+    <li>{{ announcement.salaire_propose ?? '—' }} Ar</li>
+    <li>{{ announcement.type_contrat || 'Non renseigné' }}</li>
+    <li><span class="badge">{{ announcement.statut }}</span></li>
+    <li>
+      <button type="button" class="apply-button" @click="applyForAnnouncement(announcement.reference)">
+        Postuler
+      </button>
+    </li>
+  </li>
+  <li v-if="loadingDetails || detailsError || details" class="need-details-row">
+    <li colspan="6">
       <p v-if="loadingDetails">Chargement du détail...</p>
       <p v-else-if="detailsError" role="alert">{{ detailsError }}</p>
       <pre v-else>{{ JSON.stringify(details, null, 2) }}</pre>
-    </td>
-  </tr>
+    </li>
+  </li>
 </template>

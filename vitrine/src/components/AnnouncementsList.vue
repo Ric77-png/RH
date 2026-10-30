@@ -11,7 +11,7 @@ defineProps({
 
 <template>
   <table class="needs-table">
-    <thead>
+    <!-- <thead>
       <tr>
         <th>Réf.</th>
         <th>Département</th>
@@ -20,13 +20,13 @@ defineProps({
         <th>Salaire proposé</th>
         <th>Statut</th>
       </tr>
-    </thead>
-    <tbody>
+    </thead> -->
+    <ul>
       <AnnouncementCard
         v-for="announcement in announcements"
         :key="announcement.reference"
         :announcement="announcement"
       />
-    </tbody>
+    </ul>
   </table>
 </template>

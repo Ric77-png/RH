@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080/api'; // Remplacez par l'URL de votre CI4
+const API_URL = 'http://localhost:8081/api'; // Remplacez par l'URL de votre CI4
 
 export const authService = {
   async login(email, motDePasse) {

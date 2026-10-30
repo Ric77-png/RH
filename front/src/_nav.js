@@ -25,7 +25,7 @@ export default [
   {
     component: 'CNavItem',
     name: 'Candidatures',
-    to: '#',
+    to: '/candidatures',
     icon: 'cil-user',
   },
   {

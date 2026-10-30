@@ -32,3 +32,20 @@ export async function getAnnouncementDetails(reference) {
 
   return response.json()
 }
+
+export async function submitApplication(applicationData) {
+  const response = await fetch(`${apiBaseUrl}/api/candidatures`, {
+    method: 'POST',
+    body: applicationData,
+    headers: {
+      Accept: 'application/json',
+    },
+  })
+
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    throw new Error(payload.message || 'Impossible d’envoyer la candidature.')
+  }
+
+  return payload
+}

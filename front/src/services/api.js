@@ -53,3 +53,7 @@ export function getNeedDetails(reference) {
     `/api/rh/needs/${encodeURIComponent(reference)}`
   )
 }
+
+export function getPendingApplications() {
+  return apiFetch('/api/rh/candidatures')
+}
